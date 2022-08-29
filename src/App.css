@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400&display=swap");
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+#app {
+  background-color: #f1f1f1;
+}
+/* Sidebar Menu */
+.MuiListItem-root.Mui-selected div span,
+.MuiListItem-root.Mui-selected .MuiListItemIcon-root {
+  color: #81c784 !important;
+}
+
+/* Project Details */
+.tab-buttons .active {
+  color: #81c784;
+  background-color: #ecf0f1;
+}
+
+.tabs-container .nav-tabs .nav-link {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  cursor: pointer;
+  color: #81c784;
+}
+.nav-tabs {
+  border-top: 1px solid #dee2e6;
+}
+.nav-tabs .nav-link.active {
+  border-color: #fff #dee2e6 #ecf0f1 !important;
+  background-color: #ecf0f1 !important;
+}
+.project-tasks-table thead th {
+  font-weight: bold;
+}
+.project-tasks-table tbody tr {
+  cursor: pointer;
+}
+.project-task {
+  transition: background-color 200ms ease-in-out;
+}
+.project-task:hover {
+  background-color: #ecf0f1;
+}
+
+.tablinks {
+  /* border-top: none !important;
+  border-bottom: none !important; */
+  border: none !important;
+}
