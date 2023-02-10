@@ -1,9 +1,10 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { FRONTEND_SITE } from "../vars/endpoints.js";
 
 export const getSiteData = createAsyncThunk("page/index", async () => {
   const response = await axios.get(
-    "frontend/site"
+    FRONTEND_SITE
   );
   return response.data;
 });

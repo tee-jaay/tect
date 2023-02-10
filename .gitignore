@@ -32,3 +32,6 @@ cypress/videos/
 # Local Netlify folder
 .netlify
 netlify.toml
+
+# Custom
+package-lock.json

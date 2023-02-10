@@ -1,11 +1,13 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { HOMEPAGE_TOOL_ADD, HOMEPAGE_TOOL_INDEX } from "../vars/endpoints.js";
+
 export const toolIndex = createAsyncThunk(
   "page/homepage/tool/index",
   async () => {
     const response = await axios.get(
-      `homepage/tool/index`
+      HOMEPAGE_TOOL_INDEX
     );
     return response.data;
   }
@@ -15,7 +17,7 @@ export const toolAdd = createAsyncThunk(
   "page/homepage/tool/add",
   async (data) => {
     const response = await axios.patch(
-      `homepage/tool/add`,
+      HOMEPAGE_TOOL_ADD,
       data
     );
     return response.data;

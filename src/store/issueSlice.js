@@ -1,11 +1,12 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PROJECTS_ISSUES, PROJECTS_ISSUES_COMMENTS } from "../vars/endpoints.js";
 
 export const fetchIssuesByProjectId = createAsyncThunk(
   "issues/byProject",
   async (projectId) => {
     const response = await axios.get(
-      `issues/project/${projectId}`
+      `${PROJECTS_ISSUES}/${projectId}`
     );
     return response.data;
   }
@@ -21,7 +22,7 @@ export const getIssueById = createAsyncThunk("issues/show", async (id) => {
 export const createIssue = createAsyncThunk("issues/create", async (data) => {
   const { projectId } = data;
   const response = await axios.post(
-    `issues/${projectId}`,
+    `${PROJECTS_ISSUES}/${projectId}`,
     data
   );
   return response.data;
@@ -34,7 +35,7 @@ export const updateIssue = createAsyncThunk("issues/update", async (data) => {
     text: data.text,
   };
   const response = await axios.patch(
-    `issues/comments/${issueId}`,
+    `${PROJECTS_ISSUES_COMMENTS}/${issueId}`,
     sendData
   );
   return response.data;

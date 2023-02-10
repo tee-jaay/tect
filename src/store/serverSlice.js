@@ -1,11 +1,13 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { HOMEPAGE_FEATURE_ADD, HOMEPAGE_SERVER_DESTROY, HOMEPAGE_SERVER_INDEX } from "../vars/endpoints.js";
+
 export const serverIndex = createAsyncThunk(
   "page/homepage/server/index",
   async () => {
     const response = await axios.get(
-      `homepage/server/index`
+      HOMEPAGE_SERVER_INDEX
     );
     return response.data;
   }
@@ -15,7 +17,7 @@ export const serverAdd = createAsyncThunk(
   "page/homepage/server/add",
   async (data) => {
     const response = await axios.patch(
-      `homepage/server/add`,
+      HOMEPAGE_FEATURE_ADD,
       data
     );
     return response.data;
@@ -26,7 +28,7 @@ export const serverDelete = createAsyncThunk(
   "page/homepage/server/destroy",
   async (id) => {
     const response = await axios.delete(
-      `homepage/server/destroy/${id}`
+      `${HOMEPAGE_SERVER_DESTROY}/${id}`
     );
     return response.data;
   }

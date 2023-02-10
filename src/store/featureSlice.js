@@ -1,11 +1,12 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { HOMEPAGE_FEATURE_ADD, HOMEPAGE_FEATURE_INDEX } from "../vars/endpoints.js";
 
 export const featureIndex = createAsyncThunk(
   "page/homepage/feature/index",
   async () => {
     const response = await axios.get(
-      "homepage/feature/index"
+      HOMEPAGE_FEATURE_INDEX
     );
     return response.data;
   }
@@ -16,7 +17,7 @@ export const featureAdd = createAsyncThunk(
   async (data) => {
     console.log(data);
     const response = await axios.patch(
-      "homepage/feature/add",
+      HOMEPAGE_FEATURE_ADD,
       data
     );
     return response.data;

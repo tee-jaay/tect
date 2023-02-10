@@ -1,11 +1,13 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { PROJECTS, PROJECTS_ASSIGNEES, PROJECTS_BUDGETS, PROJECTS_BY_LIMIT, PROJECTS_COMMENTS, PROJECTS_SEARCH } from "../vars/endpoints.js";
+
 export const fetchProjects = createAsyncThunk(
   "projects/indexByLimit",
   async () => {
     const response = await axios.get(
-      "projects-by-limit/24",
+      `${PROJECTS_BY_LIMIT}/24`,
     );
     return response.data;
   }
@@ -13,7 +15,7 @@ export const fetchProjects = createAsyncThunk(
 
 export const getProjectById = createAsyncThunk("projects/show", async (id) => {
   const response = await axios.get(
-    `projects/${id}`,
+    `${PROJECTS}/${id}`,
   );
   return response.data[0];
 });
@@ -22,7 +24,7 @@ export const createProject = createAsyncThunk(
   "projects/create",
   async (data) => {
     const response = await axios.post(
-      "projects",
+      PROJECTS,
       data
     );
     return response.data;
@@ -38,7 +40,7 @@ export const createProjectComment = createAsyncThunk(
       comment: data.comment,
     };
     const response = await axios.patch(
-      `projects/comments/${projectId}`,
+      `${PROJECTS_COMMENTS}/${projectId}`,
       sendData
     );
     return response.data;
@@ -50,7 +52,7 @@ export const addProjectAssignees = createAsyncThunk(
   async (data) => {
     const { projectId, assignees } = data;
     const response = await axios.patch(
-      `project-assignees/${projectId}`,
+      `${PROJECTS_ASSIGNEES}/${projectId}`,
       assignees
     );
     return response.data;
@@ -62,7 +64,7 @@ export const storeProjectBudget = createAsyncThunk(
   async (sendData) => {
     const { projectId, budget } = sendData;
     const response = await axios.patch(
-      `project-budgets/${projectId}`,
+      `${PROJECTS_BUDGETS}/${projectId}`,
       budget
     );
     return response.data;
@@ -75,7 +77,7 @@ export const updateProject = createAsyncThunk(
     const { projectId } = sendData;
     const { data } = sendData;
     const response = await axios.patch(
-      `projects/${projectId}`,
+      `${PROJECTS}/${projectId}`,
       data
     );
     return response.data;
@@ -86,7 +88,7 @@ export const searchProjects = createAsyncThunk(
   "projects/search",
   async (keyword) => {
     const response = await axios.post(
-      `projects-search/${keyword}`
+      `${PROJECTS_SEARCH}/${keyword}`
     );
     return response.data;
   }

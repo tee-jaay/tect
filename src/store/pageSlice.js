@@ -1,14 +1,16 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { PAGES } from "../vars/endpoints.js";
+
 export const getPages = createAsyncThunk("page/index", async () => {
-  const response = await axios.get("page");
+  const response = await axios.get(PAGES);
   return response.data;
 });
 
 export const createPage = createAsyncThunk("page/create", async (sendData) => {
   const response = await axios.post(
-    "page",
+    PAGES,
     sendData
   );
   return response.data;
@@ -16,7 +18,7 @@ export const createPage = createAsyncThunk("page/create", async (sendData) => {
 
 export const updatePage = createAsyncThunk("page/update", async (sendData) => {
   const response = await axios.patch(
-    "page",
+    PAGES,
     sendData
   );
   return response.data;

@@ -1,11 +1,12 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { DASHBOARD } from "../vars/endpoints.js";
 
 export const getDashboardData = createAsyncThunk(
   "dashboard/index",
   async () => {
     const response = await axios.get(
-      "dashboard"
+      DASHBOARD
     );
     return response.data;
   }

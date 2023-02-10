@@ -1,11 +1,13 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { PROJECTS_MEETINGS, PROJECTS_MEETINGS_COMMENTS } from "../vars/endpoints.js";
+
 export const fetchMeetingsByProjectId = createAsyncThunk(
   "meetings/byProject",
   async (projectId) => {
     const response = await axios.get(
-      `meetings/project/${projectId}`
+      `${PROJECTS_MEETINGS}/${projectId}`
     );
     return response.data;
   }
@@ -22,7 +24,7 @@ export const createMeeting = createAsyncThunk(
   "meetings/create",
   async (data) => {
     const response = await axios.post(
-      `meetings`,
+      PROJECTS_MEETINGS,
       data
     );
     return response.data;
@@ -33,7 +35,7 @@ export const createMeetingComment = createAsyncThunk(
   "meetings/create",
   async (data) => {
     const response = await axios.patch(
-      `meetings/comments/${data.meetingId}`,
+      `${PROJECTS_MEETINGS_COMMENTS}/${data.meetingId}`,
       data
     );
     return response.data;

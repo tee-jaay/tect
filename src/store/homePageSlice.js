@@ -1,9 +1,11 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { HOMEPAGE, HOMEPAGE_UPDATE } from "../vars/endpoints.js";
+
 export const getHomePage = createAsyncThunk("page/homepage/index", async () => {
   const response = await axios.get(
-    "homepage"
+    HOMEPAGE
   );
   return response.data;
 });
@@ -13,7 +15,7 @@ export const updateHomepage = createAsyncThunk(
   async (sendData) => {
     console.log(sendData);
     const response = await axios.patch(
-      "homepage/update",
+      HOMEPAGE_UPDATE,
       sendData
     );
     return response.data;
