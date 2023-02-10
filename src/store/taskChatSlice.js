@@ -1,11 +1,13 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { PROJECTS_TASKS_CHAT } from "../vars/endpoints.js";
+
 export const getChatMessagesByTaskId = createAsyncThunk(
   "chat/byTask",
   async (taskId) => {
     const response = await axios.get(
-      `tasks/chat/${taskId}`
+      `${PROJECTS_TASKS_CHAT}/${taskId}`
     );
     return response.data;
   }

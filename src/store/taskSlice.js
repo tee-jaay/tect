@@ -1,12 +1,14 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { PROJECTS_TASKS, PROJECTS_TASKS_CHAT } from "../vars/endpoints.js";
+
 // get all tasks
 export const fetchTasksByProjectId = createAsyncThunk(
   "tasks/byProject",
   async (projectId) => {
     const response = await axios.get(
-      `tasks/project/${projectId}`
+      `${PROJECTS_TASKS}/${projectId}`
     );
     return response.data;
   }
@@ -14,23 +16,23 @@ export const fetchTasksByProjectId = createAsyncThunk(
 // get task by id
 export const getTaskById = createAsyncThunk("tasks/detail", async (taskId) => {
   const response = await axios.get(
-    `tasks/${taskId}`
+    `${PROJECTS_TASKS}/${taskId}`
   );
   return response.data[0];
 });
 // store a task
 export const createTask = createAsyncThunk("tasks/create", async (data) => {
   const response = await axios.post(
-    `tasks`,
+    PROJECTS_TASKS,
     data
   );
-  await axios.post(`tasks/chat/${response.data.id}`, { taskId: response.data.id, createdBy: response.data.createdBy, message: "Welcome to tasks chat", filePath: "" });
+  await axios.post(`${PROJECTS_TASKS_CHAT}/${response.data.id}`, { taskId: response.data.id, createdBy: response.data.createdBy, message: "Welcome to tasks chat", filePath: "" });
   return response.data;
 });
 // Update a task
 export const updateTask = createAsyncThunk("tasks/update", async (data) => {
   const response = await axios.patch(
-    `tasks/${data.taskId}`,
+    `${PROJECTS_TASKS}/${data.taskId}`,
     data
   );
 

@@ -1,11 +1,13 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { HOMEPAGE_LIBRARY_ADD, HOMEPAGE_LIBRARY_DESTROY, HOMEPAGE_LIBRARY_INDEX } from "../vars/endpoints.js";
+
 export const techIndex = createAsyncThunk(
   "page/homepage/tech/index",
   async () => {
     const response = await axios.get(
-      `homepage/library/index`
+      HOMEPAGE_LIBRARY_INDEX
     );
     return response.data;
   }
@@ -15,7 +17,7 @@ export const techAdd = createAsyncThunk(
   "page/homepage/tech/add",
   async (data) => {
     const response = await axios.patch(
-      `homepage/library/add`,
+      HOMEPAGE_LIBRARY_ADD,
       data
     );
     return response.data;
@@ -26,7 +28,7 @@ export const techDelete = createAsyncThunk(
   "page/homepage/tech/destroy",
   async (id) => {
     const response = await axios.delete(
-      `homepage/library/destroy/${id}`
+      `${HOMEPAGE_LIBRARY_DESTROY}/${id}`
     );
     return response.data;
   }

@@ -1,11 +1,13 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { PROFILES_USER } from "../vars/endpoints.js";
+
 export const getProfileByUserId = createAsyncThunk(
   "profiles/detail",
   async (userId) => {
     const response = await axios.get(
-      `profiles/user/${userId}`
+      `${PROFILES_USER}/${userId}`
     );
     return response.data;
   }

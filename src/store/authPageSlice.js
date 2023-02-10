@@ -1,11 +1,12 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { AUTHPAGE } from "../vars/endpoints.js";
 
 export const getAuthPages = createAsyncThunk(
   "page/authpage/index",
   async () => {
     const response = await axios.get(
-      "authpage"
+      AUTHPAGE
     );
     return response.data;
   }
@@ -15,7 +16,7 @@ export const uploadImage = createAsyncThunk(
   "page/authpage/image",
   async (sendData) => {
     const response = await axios.post(
-      "authpage",
+      AUTHPAGE,
       sendData
     );
     return response.data;

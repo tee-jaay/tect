@@ -1,11 +1,13 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { PROJECTS_TASKS_TODOS } from "../vars/endpoints.js";
+
 export const getTodosByTasksId = createAsyncThunk(
   "todos/byTask",
   async (taskId) => {
     const response = await axios.get(
-      `todos/task/${taskId}`
+      `${PROJECTS_TASKS_TODOS}/taskId/${taskId}`
     );
     return response.data;
   }
@@ -13,7 +15,7 @@ export const getTodosByTasksId = createAsyncThunk(
 
 export const createTodo = createAsyncThunk("todos/create", async (data) => {
   const response = await axios.post(
-    `todos`,
+    PROJECTS_TASKS_TODOS,
     data
   );
   return response.data;
@@ -21,7 +23,7 @@ export const createTodo = createAsyncThunk("todos/create", async (data) => {
 
 export const updateTodo = createAsyncThunk("todos/update", async (data) => {
   const response = await axios.patch(
-    `todos/${data.todoId}`,
+    `${PROJECTS_TASKS_TODOS}/todoId/${data.todoId}`,
     data
   );
   return response.data;
@@ -29,14 +31,14 @@ export const updateTodo = createAsyncThunk("todos/update", async (data) => {
 
 export const getTodosById = createAsyncThunk("todos/one", async (id) => {
   const response = await axios.get(
-    `todos/${id}`
+    `${PROJECTS_TASKS_TODOS}/todoId/${id}`
   );
   return response.data[0];
 });
 
 export const destroyTodo = createAsyncThunk("todos/destroy", async (todoId) => {
   const response = await axios.delete(
-    `todos/${todoId}`
+    `${PROJECTS_TASKS_TODOS}/todoId/${todoId}`
   );
   return response.data;
 });

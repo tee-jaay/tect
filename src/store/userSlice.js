@@ -1,9 +1,11 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { AUTH_LOGIN, AUTH_LOGOUT, USERS_ALL } from "../vars/endpoints.js";
+
 export const userSignIn = createAsyncThunk("auth/signIn", async (loginData) => {
   const response = await axios.post(
-    "auth/login",
+    AUTH_LOGIN,
     loginData
   );
   localStorage.setItem("auth_token", response.data.accessToken);
@@ -11,7 +13,7 @@ export const userSignIn = createAsyncThunk("auth/signIn", async (loginData) => {
 });
 
 export const userSignOut = createAsyncThunk(
-  "auth/signOut",
+  AUTH_LOGOUT,
   (async) => {
     console.log("userSignOut");
     localStorage.setItem("token", "");
@@ -21,7 +23,7 @@ export const userSignOut = createAsyncThunk(
 );
 
 export const allUsers = createAsyncThunk("users/all", async () => {
-  const response = await axios.get("users");
+  const response = await axios.get(USERS_ALL);
   return response.data;
 });
 

@@ -1,11 +1,13 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { PROJECTS_TIMESHEETS } from "../vars/endpoints.js";
+
 export const fetchTimeSheetsByProjectId = createAsyncThunk(
   "timeSheets/byProject",
   async (projectId) => {
     const response = await axios.get(
-      `timeSheets/project/${projectId}`
+      `${PROJECTS_TIMESHEETS}/${projectId}`
     );
     return response.data;
   }
@@ -15,7 +17,7 @@ export const getTimeSheetById = createAsyncThunk(
   "timeSheets/one",
   async (id) => {
     const response = await axios.get(
-      `timeSheets/${id}`
+      `${PROJECTS_TIMESHEETS}/${id}`
     );
     return response.data[0];
   }
@@ -25,7 +27,7 @@ export const createTimeSheet = createAsyncThunk(
   "timeSheets/add",
   async (data) => {
     const response = await axios.post(
-      `timeSheets`,
+      PROJECTS_TIMESHEETS,
       data
     );
     return response.data;
@@ -36,7 +38,7 @@ export const updateTimeSheet = createAsyncThunk(
   "timeSheets/update",
   async (data) => {
     const response = await axios.patch(
-      `timeSheets`,
+      PROJECTS_TIMESHEETS,
       data
     );
     return response.data;

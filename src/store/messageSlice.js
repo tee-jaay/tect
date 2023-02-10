@@ -1,11 +1,13 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+import { MESSAGE_EMAILS_SEND } from "../vars/endpoints.js";
+
 export const sendEmails = createAsyncThunk(
   "project/message/send",
   async (data) => {
     const response = await axios.post(
-      `message/send-emails`,
+      MESSAGE_EMAILS_SEND,
       data
     );
     return response.data;
